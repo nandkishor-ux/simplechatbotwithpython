@@ -1,0 +1,33 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+pairs = [
+    ['(hii|hello|hey|heyy|hola)',['hii,there','hey,there','heyy']],
+    [ "what is your name?", ["I am a Chatbot created by nand kishor. What can I call you?",] ],
+    [ "how are you doing?", ["I'm doing well, thank you for asking!",] ],
+    [ "what is the weather like?", ["I don't have access to weather information, but I hope it's nice outside!"] ],
+    [ "(.*) (good|great|fine)", ["That's wonderful to hear!",] ],
+    [ "(.*)", ["I am sorry, I am still learning. Can you rephrase that?",] ],
+    [ "bye", ["Goodbye! Have a great day."] ],
+]
+
+def chatbot():
+  print("Hello! I am a Chatbot. Type 'bye' to exit.")
+  while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'bye':
+      print("Chatbot: Goodbye!")
+      break
+    response = Chat(pairs, reflections).respond(user_input)
+    print("Chatbot:", response)
+
+if __name__ == "__main__":
+  chatbot()
+reflections
+my_dummy_reflections= {
+    'go':'gone',
+    'hello':'hey,there'
+}
+chat=Chat(pairs,my_dummy_reflections)
+chat.converse()
+
